@@ -12,6 +12,7 @@ Title="MainWindow" Height="520" Width="660" Loaded="Window_Loaded" Closing="Wind
         <Image Name="guante" Canvas.Left="274" Canvas.Top="346" Height="87" Width="82" Source="guanteDer.jpg"/>
         <Label Name="pelotas" Content="Puntos: " Background="Bisque"  FontSize="15" Canvas.Left="10" Canvas.Top="440"/>
         <Label Name="puntaje" Content="0" FontSize="15" Canvas.Left="89" Canvas.Top="440" Width="39"/>
+        <Label x:Name="timerLabel" Content="" Canvas.Left="294" Canvas.Top="10"/>
     </Canvas>
 
 </Window>
