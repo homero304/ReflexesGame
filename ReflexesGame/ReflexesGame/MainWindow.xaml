@@ -5,8 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ReflexesGame"
         mc:Ignorable="d"
-        Title="MainWindow" Height="350" Width="525">
-    <Grid>
-        
-    </Grid>
+ 
+Title="MainWindow" Height="520" Width="660" Loaded="Window_Loaded" Closing="Window_Closing">
+    <Canvas Name="MainCanvas" Grid.Row="1" HorizontalAlignment="Center" Width="640" Height="480">
+        <Image Name="pelota" Canvas.Left="10" Canvas.Top="10" Height="46" Width="46" Source="pelota.jpg"/>
+        <Image Name="guante" Canvas.Left="274" Canvas.Top="346" Height="87" Width="82" Source="guanteDer.jpg"/>
+        <Label Name="pelotas" Content="Puntos: " Background="Bisque"  FontSize="15" Canvas.Left="10" Canvas.Top="440"/>
+        <Label Name="puntaje" Content="0" FontSize="15" Canvas.Left="89" Canvas.Top="440" Width="39"/>
+    </Canvas>
+
 </Window>
