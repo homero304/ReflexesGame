@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Threading;
-
+using Microsoft.Kinect;
 namespace ReflexesGame
 {
     /// <summary>
