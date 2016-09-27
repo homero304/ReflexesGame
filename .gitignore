@@ -1,0 +1,15 @@
+ReflexesGame/ReflexesGame/bin/Debug/Microsoft.Kinect.dll
+ReflexesGame/ReflexesGame/bin/Debug/Microsoft.Kinect.xml
+ReflexesGame/ReflexesGame/bin/Debug/ReflexesGame.exe
+ReflexesGame/ReflexesGame/obj/Debug/App.g.cs
+*.cs
+ReflexesGame/ReflexesGame/obj/Debug/MainWindow.baml
+*.pdb
+ReflexesGame/ReflexesGame/obj/Debug/ReflexesGame.csproj.GenerateResource.Cache
+*.cache
+ReflexesGame/ReflexesGame/obj/Debug/ReflexesGame.g.resources
+*.resources
+ReflexesGame/ReflexesGame/obj/Debug/ReflexesGame_MarkupCompile.lref
+*.txt
+ReflexesGame/ReflexesGame/obj/Debug/MainWindow.g.i.cs
+*.cs
