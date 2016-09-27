@@ -45,37 +45,13 @@ namespace ReflexesGame
                 timerLabel.Content = "Se acabo del tiempo!";
             }
         }
-        private void miKinectSkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
-        {
-            Skeleton[] skeletons = new Skeleton[0];
-            using (SkeletonFrame skeletonFrame = e.OpenSkeletonFrame())
-            {
-                if (skeletonFrame != null)
-                {
-                    skeletons = new Skeleton[skeletonFrame.SkeletonArrayLength];
-                    skeletonFrame.CopySkeletonDataTo(skeletons);
-                }
-            }
-
-            if (skeletons.Length != 0)
-            {
-                foreach (Skeleton skeletonEncontrado in skeletons)
-                {
-                    if (skeletonEncontrado.TrackingState == SkeletonTrackingState.Tracked)
-                    {
-                        //this.obtenerCoordenadaDeJoint(skeletonEncontrado, JointType.HandRight);
-                        //this.obtenerCoordenadaDeJoint(skeletonEncontrado, JointType.HandLeft);
-                    }
-
-                }
-            }
-        }
+        
         private void obtenerCoordenadaDeJoint(Skeleton skeleton, JointType tipoJointDeseado)
         {
             Joint miJoint = skeleton.Joints[tipoJointDeseado];
-            Point coordenadaJoint = this.SkeletonPointToScreen(miJoint.Position);
             if (miJoint.TrackingState == JointTrackingState.Tracked)
             {
+                Point coordenadaJoint = this.SkeletonPointToScreen(miJoint.Position);
                 if (JointType.WristLeft == tipoJointDeseado)
                 {
                     Puntero1.SetValue(Canvas.TopProperty, coordenadaJoint.Y - 12.5);
@@ -95,6 +71,35 @@ namespace ReflexesGame
             DepthImagePoint depthPoint = this.miKinect.CoordinateMapper.MapSkeletonPointToDepthPoint(posicionDeJoint, DepthImageFormat.Resolution640x480Fps30);
             return new Point(depthPoint.X, depthPoint.Y);
         }
+
+        private void miKinectSkeletonFrameReady(object sender, SkeletonFrameReadyEventArgs e)
+        {
+            //Creamos el objeto Skeleton que usaremos para recibir el frame 
+            Skeleton[] skeletons = new Skeleton[0];
+
+            //Abrimos el frame que se ha recibido y lo copiamos a nuestro objeto skeletons
+            using (SkeletonFrame skeletonFrame = e.OpenSkeletonFrame())
+            {
+                if (skeletonFrame != null)
+                {
+                    skeletons = new Skeleton[skeletonFrame.SkeletonArrayLength];
+                    skeletonFrame.CopySkeletonDataTo(skeletons);
+                }
+            }
+
+            if (skeletons.Length != 0)
+            {
+                foreach (Skeleton skeletonEncontrado in skeletons)
+                {
+                    if (skeletonEncontrado.TrackingState == SkeletonTrackingState.Tracked)
+                    {
+                        this.obtenerCoordenadaDeJoint(skeletonEncontrado, JointType.HandLeft);
+                        this.obtenerCoordenadaDeJoint(skeletonEncontrado, JointType.HandRight);
+                    }
+                }
+            }
+        }
+
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             foreach (KinectSensor kinectConectado in KinectSensor.KinectSensors)
