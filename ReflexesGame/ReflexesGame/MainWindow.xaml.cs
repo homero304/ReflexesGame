@@ -73,23 +73,18 @@ namespace ReflexesGame
         private void obtenerCoordenadaDeJoint(Skeleton skeleton, JointType tipoJointDeseado)
         {
             Joint miJoint = skeleton.Joints[tipoJointDeseado];
-
-            // Si el Joint esta listo
+            Point coordenadaJoint = this.SkeletonPointToScreen(miJoint.Position);
             if (miJoint.TrackingState == JointTrackingState.Tracked)
             {
-                if (JointType.HandRight == tipoJointDeseado)
+                if (JointType.WristLeft == tipoJointDeseado)
                 {
-                    //point = this.SkeletonPointToScreen(miJoint.Position); //
-                    //guanteX = point.X;
-
-                    //guante.SetValue(Canvas.LeftProperty, guanteX);
+                    Puntero1.SetValue(Canvas.TopProperty, coordenadaJoint.Y - 12.5);
+                    Puntero1.SetValue(Canvas.LeftProperty, coordenadaJoint.X - 12.5);
                 }
-                if (JointType.HandLeft == tipoJointDeseado)
+                if (JointType.WristRight == tipoJointDeseado)
                 {
-                    //point = this.SkeletonPointToScreen(miJoint.Position); //
-                    //guante2X = point.X;
-
-                    //guanteIzq.SetValue(Canvas.LeftProperty, guante2X);
+                    Puntero2.SetValue(Canvas.TopProperty, coordenadaJoint.Y - 12.5);
+                    Puntero2.SetValue(Canvas.LeftProperty, coordenadaJoint.X - 12.5);
                 }
             }
         }
