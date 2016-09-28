@@ -28,6 +28,7 @@ namespace ReflexesGame
         Random randomize = new Random();
         
         bool hit = false;
+        bool gameStarted = false;
         const int maxPoints = 300;
         int pointsCounter = 0;
         const double boton1X = 33;
@@ -56,6 +57,11 @@ namespace ReflexesGame
         const double boton12Y = 407;
         const double botonWidth = 46;
         const double botonHeight = 46;
+        const double startBtnX = 292;
+        const double startBtnY = 104;
+        const double startBtnWidth = 154;
+        const double startBtnHeight = 56;
+        Point startBtnCood = new Point(startBtnX, startBtnY);
         Point[] puntos = new Point[12] {
             new Point(boton1X, boton1Y),
             new Point(boton2X, boton2Y),
@@ -81,13 +87,13 @@ namespace ReflexesGame
             MainCanvas.Focusable = true;
             MainCanvas.Focus();
         }
-        private bool detect_collision(Point point1, Point point2)
+        private bool detect_collision(Point point1, Point point2, double width, double height)
         {
             bool retValue = (
-                           (point1.X >= (point2.X - botonWidth / 2) )
-                        && (point1.X <= (point2.X + botonWidth / 2))
-                        && (point1.Y >= (point2.Y - botonHeight / 2))
-                        && (point1.Y <= (point2.Y + botonHeight / 2))
+                           (point1.X >= (point2.X - width / 2) )
+                        && (point1.X <= (point2.X + width / 2))
+                        && (point1.Y >= (point2.Y - height / 2))
+                        && (point1.Y <= (point2.Y + height / 2))
                         );
 
             return retValue;
@@ -222,8 +228,13 @@ namespace ReflexesGame
                     default:
                         break;
                 }
-                if (detect_collision(coordenadaJoint, puntoSeleccionado) && !hit) {
+                if (detect_collision(coordenadaJoint, puntoSeleccionado, botonWidth, botonHeight) && !hit) {
                     hit = true;
+                }
+                if (detect_collision(coordenadaJoint, startBtnCood, startBtnWidth, startBtnHeight) && !gameStarted)
+                {
+                    start();
+                    gameStarted = true;
                 }
 
             }
@@ -234,7 +245,7 @@ namespace ReflexesGame
             return new Point(depthPoint.X, depthPoint.Y);
         }
 
-        private void startBtn_Click(object sender, RoutedEventArgs e)
+        private void start()
         {
             startBtn.Visibility = Visibility.Hidden;
             imagenes[0] = CP1;
@@ -257,9 +268,10 @@ namespace ReflexesGame
             timer.Tick += new EventHandler(timer_Tick);
             timer.IsEnabled = true;
             timerPuntaje = new DispatcherTimer();
-            timerPuntaje.Interval = new TimeSpan(0, 0, 0, 0, 500);
+            timerPuntaje.Interval = new TimeSpan(0, 0, 0, 0, 300);
             timerPuntaje.Tick += new EventHandler(timerPuntaje_Tick);
             timerPuntaje.IsEnabled = true;
+            
         }
 
         // if(boton1X >=(double)mano.GetValue(Canvas.LeftProperty))
