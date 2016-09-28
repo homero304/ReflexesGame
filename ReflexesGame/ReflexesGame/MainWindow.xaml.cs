@@ -25,30 +25,54 @@ namespace ReflexesGame
         int timeLeft = 60;
         DispatcherTimer timer;
         Random randomize = new Random();
-        double boton1X = 33;
-        double boton1Y = 33;
-        double boton2X = 169;
-        double boton2Y = 126.5;
-        double boton3X = 315;
-        double boton3Y = 220;
-        double boton4X = 461;
-        double boton4Y = 126.5;
-        double boton5X = 571;
-        double boton5Y = 33;
-        double boton6X = 33;
-        double boton6Y = 220;
-        double boton7X = 607;
-        double boton7Y = 220;
-        double boton8X = 169;
-        double boton8Y = 313.5;
-        double boton9X = 461;
-        double boton9Y = 313.5;
-        double boton10X = 33;
-        double boton10Y = 407;
-        double boton11X = 315;
-        double boton11Y = 407;
-        double boton12X = 607;
-        double boton12Y = 407;
+        
+        bool hit = false;
+        const int maxPoints = 300;
+        int pointsCounter = 0;
+        const double boton1X = 33;
+        const double boton1Y = 33;
+        const double boton2X = 169;
+        const double boton2Y = 126.5;
+        const double boton3X = 315;
+        const double boton3Y = 220;
+        const double boton4X = 461;
+        const double boton4Y = 126.5;
+        const double boton5X = 571;
+        const double boton5Y = 33;
+        const double boton6X = 33;
+        const double boton6Y = 220;
+        const double boton7X = 607;
+        const double boton7Y = 220;
+        const double boton8X = 169;
+        const double boton8Y = 313.5;
+        const double boton9X = 461;
+        const double boton9Y = 313.5;
+        const double boton10X = 33;
+        const double boton10Y = 407;
+        const double boton11X = 315;
+        const double boton11Y = 407;
+        const double boton12X = 607;
+        const double boton12Y = 407;
+        const double botonWidth = 46;
+        const double botonHeight = 46;
+        Point[] puntos = new Point[12] {
+            new Point(boton1X, boton1Y),
+            new Point(boton2X, boton2Y),
+            new Point(boton3X, boton3Y),
+            new Point(boton4X, boton4Y),
+            new Point(boton5X, boton5Y),
+            new Point(boton6X, boton6Y),
+            new Point(boton7X, boton7Y),
+            new Point(boton8X, boton8Y),
+            new Point(boton9X, boton9Y),
+            new Point(boton10X, boton10Y),
+            new Point(boton11X, boton11Y),
+            new Point(boton12X, boton12Y)
+    };
+        Image[] imagenes = new Image[12];
+        Point puntoSeleccionado = new Point();
+        int indiceSeleccionado = 0;
+
 
         public MainWindow()
         {
@@ -59,6 +83,17 @@ namespace ReflexesGame
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1000);
             timer.Tick += new EventHandler(timer_Tick);
             timer.IsEnabled = true;
+        }
+        private bool detect_collision(Point point1, Point point2)
+        {
+            bool retValue = (
+                           (point1.X >= (point2.X - botonWidth / 2) )
+                        && (point1.X <= (point2.X + botonWidth / 2))
+                        && (point1.Y >= (point2.Y - botonHeight / 2))
+                        && (point1.Y <= (point2.Y + botonHeight / 2))
+                        );
+
+            return retValue;
         }
         private void timer_Tick(object sender, EventArgs e)
         {
@@ -71,6 +106,19 @@ namespace ReflexesGame
             {
                 timer.Stop();
                 timerLabel.Content = "Se acabo del tiempo!";
+            }
+            if (hit)
+            {
+                imagenes[indiceSeleccionado].Visibility = Visibility.Hidden;
+                if (pointsCounter < maxPoints)
+                {
+                    pointsCounter += 1;
+                    puntaje.Content = Convert.ToString(pointsCounter);
+                    hit = false;
+                    indiceSeleccionado = randomize.Next(0, 11);
+                    puntoSeleccionado = puntos[indiceSeleccionado];
+                    imagenes[indiceSeleccionado].Visibility = Visibility.Visible;
+                }
             }
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -96,7 +144,22 @@ namespace ReflexesGame
                     this.miKinect = null;
                 }
             }
-
+            imagenes[0] = CP1;
+            imagenes[1] = CP2;
+            imagenes[2] = CP3;
+            imagenes[3] = CP4;
+            imagenes[4] = CP5;
+            imagenes[5] = CP6;
+            imagenes[6] = CP7;
+            imagenes[7] = CP8;
+            imagenes[8] = CP9;
+            imagenes[9] = CP10;
+            imagenes[10] = CP11;
+            imagenes[11] = CP12;
+            indiceSeleccionado = randomize.Next(0, 11);
+            puntoSeleccionado = puntos[indiceSeleccionado];
+            imagenes[indiceSeleccionado].Visibility = Visibility.Visible;
+            
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
@@ -166,6 +229,9 @@ namespace ReflexesGame
                         break;
                     default:
                         break;
+                }
+                if (detect_collision(coordenadaJoint, puntoSeleccionado) && !hit) {
+                    hit = true;
                 }
 
             }
