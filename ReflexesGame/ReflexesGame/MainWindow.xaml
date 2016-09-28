@@ -36,7 +36,7 @@ Title="MainWindow" Height="520" Width="660" Loaded="Window_Loaded" Closing="Wind
         <Image Name="cronometroImagen" Canvas.Left="215" Canvas.Top="10" Height="46" Width="46" Source="cronometro.png" Visibility="Visible"/>
         <Label Name="pelotas" Content="Puntos: " Background="Bisque"  FontSize="15" Canvas.Left="10" Canvas.Top="440"/>
         <Label Name="puntaje" Content="0" FontSize="15" Canvas.Left="89" Canvas.Top="440" Width="39"/>
-        <Label x:Name="timerLabel" Content="00" Canvas.Left="267" Canvas.Top="10" FontSize="30"/>
+        <Label x:Name="timerLabel" Content="60 segundos" Canvas.Left="267" Canvas.Top="10" FontSize="30"/>
         <Ellipse Name="Puntero1" Canvas.Left="200" Canvas.Top="10" Fill="Black" Width="25" Height="25"/>
         <Ellipse Name="Puntero2" Canvas.Left="400" Canvas.Top="10" Fill="Black" Width="25" Height="25"/>
         <Button Name="startBtn" Content="Start!" Canvas.Left="215" Canvas.Top="76" Width="154" Height="56" FontSize="20" Foreground="White" Background="Purple">
