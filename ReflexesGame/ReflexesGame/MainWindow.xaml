@@ -8,19 +8,19 @@
  
 Title="MainWindow" Height="520" Width="660" Loaded="Window_Loaded" Closing="Window_Closing">
     <Canvas Name="MainCanvas" Grid.Row="1" HorizontalAlignment="Center" Width="640" Height="480">
-        <Image Name="CA1" Canvas.Left="10" Canvas.Top="10" Height="46" Width="46" Source="CA1.png"/>
+        <Image Name="CA1" Canvas.Left="44" Canvas.Top="10" Height="46" Width="46" Source="CA1.png"/>
         <Image Name="CA2" Canvas.Left="146" Canvas.Top="103.5" Height="46" Width="46" Source="CA1.png"/>
         <Image Name="CA3" Canvas.Left="292" Canvas.Top="197" Height="46" Width="46" Source="CA1.png"/>
         <Image Name="CA4" Canvas.Left="438" Canvas.Top="103.5" Height="46" Width="46" Source="CA1.png"/>
-        <Image Name="CA5" Canvas.Left="584" Canvas.Top="10" Height="46" Width="46" Source="CA1.png"/>
-        <Image Name="CA6" Canvas.Left="10" Canvas.Top="197" Height="46" Width="46" Source="CA1.png"/>
-        <Image Name="CA7" Canvas.Left="584" Canvas.Top="197" Height="46" Width="46" Source="CA1.png"/>
+        <Image Name="CA5" Canvas.Left="532" Canvas.Top="10" Height="46" Width="46" Source="CA1.png"/>
+        <Image Name="CA6" Canvas.Left="44" Canvas.Top="197" Height="46" Width="46" Source="CA1.png"/>
+        <Image Name="CA7" Canvas.Left="532" Canvas.Top="197" Height="46" Width="46" Source="CA1.png"/>
         <Image Name="CA8" Canvas.Left="146" Canvas.Top="290.5" Height="46" Width="46" Source="CA1.png"/>
         <Image Name="CA9" Canvas.Left="438" Canvas.Top="290.5" Height="46" Width="46" Source="CA1.png"/>
-        <Image Name="CA10" Canvas.Left="10" Canvas.Top="384" Height="46" Width="46" Source="CA1.png"/>
+        <Image Name="CA10" Canvas.Left="44" Canvas.Top="384" Height="46" Width="46" Source="CA1.png"/>
         <Image Name="CA11" Canvas.Left="292" Canvas.Top="384" Height="46" Width="46" Source="CA1.png"/>
-        <Image Name="CA12" Canvas.Left="584" Canvas.Top="384" Height="46" Width="46" Source="CA1.png"/>
-         
+        <Image Name="CA12" Canvas.Left="532" Canvas.Top="384" Height="46" Width="46" Source="CA1.png"/>
+
         <Image Name="CP1" Canvas.Left="10" Canvas.Top="10" Height="46" Width="46" Source="CP1.png" Visibility="Hidden"/>
         <Image Name="CP2" Canvas.Left="146" Canvas.Top="103.5" Height="46" Width="46" Source="CP1.png" Visibility="Hidden"/>
         <Image Name="CP3" Canvas.Left="292" Canvas.Top="197" Height="46" Width="46" Source="CP1.png" Visibility="Hidden"/>
@@ -33,9 +33,10 @@ Title="MainWindow" Height="520" Width="660" Loaded="Window_Loaded" Closing="Wind
         <Image Name="CP10" Canvas.Left="10" Canvas.Top="384" Height="46" Width="46" Source="CP1.png" Visibility="Hidden"/>
         <Image Name="CP11" Canvas.Left="292" Canvas.Top="384" Height="46" Width="46" Source="CP1.png" Visibility="Hidden"/>
         <Image Name="CP12" Canvas.Left="584" Canvas.Top="384" Height="46" Width="46" Source="CP1.png" Visibility="Hidden"/>
+        <Image Name="cronometroImagen" Canvas.Left="215" Canvas.Top="10" Height="46" Width="46" Source="cronometro.png" Visibility="Visible"/>
         <Label Name="pelotas" Content="Puntos: " Background="Bisque"  FontSize="15" Canvas.Left="10" Canvas.Top="440"/>
         <Label Name="puntaje" Content="0" FontSize="15" Canvas.Left="89" Canvas.Top="440" Width="39"/>
-        <Label x:Name="timerLabel" Content="" Canvas.Left="294" Canvas.Top="10"/>
+        <Label x:Name="timerLabel" Content="00" Canvas.Left="267" Canvas.Top="10" FontSize="30"/>
         <Ellipse Name="Puntero1" Canvas.Left="200" Canvas.Top="10" Fill="Black" Width="25" Height="25"/>
         <Ellipse Name="Puntero2" Canvas.Left="400" Canvas.Top="10" Fill="Black" Width="25" Height="25"/>
     </Canvas>

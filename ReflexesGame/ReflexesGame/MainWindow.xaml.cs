@@ -24,6 +24,7 @@ namespace ReflexesGame
         private KinectSensor miKinect;
         int timeLeft = 60;
         DispatcherTimer timer;
+        DispatcherTimer timerPuntaje;
         Random randomize = new Random();
         
         bool hit = false;
@@ -83,6 +84,10 @@ namespace ReflexesGame
             timer.Interval = new TimeSpan(0, 0, 0, 0, 1000);
             timer.Tick += new EventHandler(timer_Tick);
             timer.IsEnabled = true;
+            timerPuntaje = new DispatcherTimer();
+            timerPuntaje.Interval = new TimeSpan(0, 0, 0, 0, 500);
+            timerPuntaje.Tick += new EventHandler(timerPuntaje_Tick);
+            timerPuntaje.IsEnabled = true;
         }
         private bool detect_collision(Point point1, Point point2)
         {
@@ -95,18 +100,8 @@ namespace ReflexesGame
 
             return retValue;
         }
-        private void timer_Tick(object sender, EventArgs e)
+        private void timerPuntaje_Tick(object sender, EventArgs e)
         {
-            if (timeLeft > 0)
-            {
-                timeLeft = timeLeft - 1;
-                timerLabel.Content = "Te quedan " + timeLeft + " segundos";
-            }
-            else
-            {
-                timer.Stop();
-                timerLabel.Content = "Se acabo del tiempo!";
-            }
             if (hit)
             {
                 imagenes[indiceSeleccionado].Visibility = Visibility.Hidden;
@@ -119,6 +114,26 @@ namespace ReflexesGame
                     puntoSeleccionado = puntos[indiceSeleccionado];
                     imagenes[indiceSeleccionado].Visibility = Visibility.Visible;
                 }
+            }
+            if (timeLeft == 0)
+            {
+                timerPuntaje.Stop();
+                imagenes[indiceSeleccionado].Visibility = Visibility.Hidden;
+            }
+        }
+        private void timer_Tick(object sender, EventArgs e)
+        {
+            if (timeLeft > 0)
+            {
+                timeLeft = timeLeft - 1;
+               
+                timerLabel.Content = timeLeft + " segundos";
+            }
+            else
+            {
+                timer.Stop();
+                timerLabel.Content = "Se acabo el tiempo!";
+
             }
         }
         private void Window_Loaded(object sender, RoutedEventArgs e)
