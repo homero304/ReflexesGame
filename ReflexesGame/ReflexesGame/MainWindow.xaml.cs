@@ -25,6 +25,31 @@ namespace ReflexesGame
         int timeLeft = 60;
         DispatcherTimer timer;
         Random randomize = new Random();
+        double boton1X = 33;
+        double boton1Y = 33;
+        double boton2X = 169;
+        double boton2Y = 126.5;
+        double boton3X = 315;
+        double boton3Y = 220;
+        double boton4X = 461;
+        double boton4Y = 126.5;
+        double boton5X = 571;
+        double boton5Y = 33;
+        double boton6X = 33;
+        double boton6Y = 220;
+        double boton7X = 607;
+        double boton7Y = 220;
+        double boton8X = 169;
+        double boton8Y = 313.5;
+        double boton9X = 461;
+        double boton9Y = 313.5;
+        double boton10X = 33;
+        double boton10Y = 407;
+        double boton11X = 315;
+        double boton11Y = 407;
+        double boton12X = 607;
+        double boton12Y = 407;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -150,5 +175,8 @@ namespace ReflexesGame
             DepthImagePoint depthPoint = this.miKinect.CoordinateMapper.MapSkeletonPointToDepthPoint(posicionDeJoint, DepthImageFormat.Resolution640x480Fps30);
             return new Point(depthPoint.X, depthPoint.Y);
         }
+
+       // if(boton1X >=(double)mano.GetValue(Canvas.LeftProperty))
+
     }
 }
