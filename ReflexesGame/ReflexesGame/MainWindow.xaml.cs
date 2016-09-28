@@ -28,6 +28,7 @@ namespace ReflexesGame
         Random randomize = new Random();
         
         bool hit = false;
+        bool gameStarted = false;
         const int maxPoints = 300;
         int pointsCounter = 0;
         const double boton1X = 67;
@@ -56,6 +57,11 @@ namespace ReflexesGame
         const double boton12Y = 407;
         const double botonWidth = 46;
         const double botonHeight = 46;
+        const double startBtnX = 292;
+        const double startBtnY = 104;
+        const double startBtnWidth = 154;
+        const double startBtnHeight = 56;
+        Point startBtnCood = new Point(startBtnX, startBtnY);
         Point[] puntos = new Point[12] {
             new Point(boton1X, boton1Y),
             new Point(boton2X, boton2Y),
@@ -80,22 +86,14 @@ namespace ReflexesGame
             InitializeComponent();
             MainCanvas.Focusable = true;
             MainCanvas.Focus();
-            timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 1000);
-            timer.Tick += new EventHandler(timer_Tick);
-            timer.IsEnabled = true;
-            timerPuntaje = new DispatcherTimer();
-            timerPuntaje.Interval = new TimeSpan(0, 0, 0, 0, 500);
-            timerPuntaje.Tick += new EventHandler(timerPuntaje_Tick);
-            timerPuntaje.IsEnabled = true;
         }
-        private bool detect_collision(Point point1, Point point2)
+        private bool detect_collision(Point point1, Point point2, double width, double height)
         {
             bool retValue = (
-                           (point1.X >= (point2.X - botonWidth / 2) )
-                        && (point1.X <= (point2.X + botonWidth / 2))
-                        && (point1.Y >= (point2.Y - botonHeight / 2))
-                        && (point1.Y <= (point2.Y + botonHeight / 2))
+                           (point1.X >= (point2.X - width / 2) )
+                        && (point1.X <= (point2.X + width / 2))
+                        && (point1.Y >= (point2.Y - height / 2))
+                        && (point1.Y <= (point2.Y + height / 2))
                         );
 
             return retValue;
@@ -159,21 +157,6 @@ namespace ReflexesGame
                     this.miKinect = null;
                 }
             }
-            imagenes[0] = CP1;
-            imagenes[1] = CP2;
-            imagenes[2] = CP3;
-            imagenes[3] = CP4;
-            imagenes[4] = CP5;
-            imagenes[5] = CP6;
-            imagenes[6] = CP7;
-            imagenes[7] = CP8;
-            imagenes[8] = CP9;
-            imagenes[9] = CP10;
-            imagenes[10] = CP11;
-            imagenes[11] = CP12;
-            indiceSeleccionado = randomize.Next(0, 11);
-            puntoSeleccionado = puntos[indiceSeleccionado];
-            imagenes[indiceSeleccionado].Visibility = Visibility.Visible;
             
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -245,8 +228,13 @@ namespace ReflexesGame
                     default:
                         break;
                 }
-                if (detect_collision(coordenadaJoint, puntoSeleccionado) && !hit) {
+                if (detect_collision(coordenadaJoint, puntoSeleccionado, botonWidth, botonHeight) && !hit) {
                     hit = true;
+                }
+                if (detect_collision(coordenadaJoint, startBtnCood, startBtnWidth, startBtnHeight) && !gameStarted)
+                {
+                    start();
+                    gameStarted = true;
                 }
 
             }
@@ -257,7 +245,36 @@ namespace ReflexesGame
             return new Point(depthPoint.X, depthPoint.Y);
         }
 
-       // if(boton1X >=(double)mano.GetValue(Canvas.LeftProperty))
+        private void start()
+        {
+            startBtn.Visibility = Visibility.Hidden;
+            imagenes[0] = CP1;
+            imagenes[1] = CP2;
+            imagenes[2] = CP3;
+            imagenes[3] = CP4;
+            imagenes[4] = CP5;
+            imagenes[5] = CP6;
+            imagenes[6] = CP7;
+            imagenes[7] = CP8;
+            imagenes[8] = CP9;
+            imagenes[9] = CP10;
+            imagenes[10] = CP11;
+            imagenes[11] = CP12;
+            indiceSeleccionado = randomize.Next(0, 11);
+            puntoSeleccionado = puntos[indiceSeleccionado];
+            imagenes[indiceSeleccionado].Visibility = Visibility.Visible;
+            timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 1000);
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.IsEnabled = true;
+            timerPuntaje = new DispatcherTimer();
+            timerPuntaje.Interval = new TimeSpan(0, 0, 0, 0, 300);
+            timerPuntaje.Tick += new EventHandler(timerPuntaje_Tick);
+            timerPuntaje.IsEnabled = true;
+            
+        }
+
+        // if(boton1X >=(double)mano.GetValue(Canvas.LeftProperty))
 
     }
 }
