@@ -39,10 +39,7 @@ Title="MainWindow" Height="520" Width="660" Loaded="Window_Loaded" Closing="Wind
         <Label x:Name="timerLabel" Content="00" Canvas.Left="267" Canvas.Top="10" FontSize="30"/>
         <Ellipse Name="Puntero1" Canvas.Left="200" Canvas.Top="10" Fill="Black" Width="25" Height="25"/>
         <Ellipse Name="Puntero2" Canvas.Left="400" Canvas.Top="10" Fill="Black" Width="25" Height="25"/>
-        <Button x:Name="startBtn" Content="Start!" Canvas.Left="215" Canvas.Top="76" Width="123" FontSize="20" Foreground="White" Height="39">
-            <Button.Background>
-                <ImageBrush ImageSource="purple.jpg" />
-            </Button.Background>
+        <Button x:Name="startBtn" Content="Start!" Canvas.Left="215" Canvas.Top="76" Width="154" FontSize="20" Foreground="White" Background="Purple" Height="56" Click="startBtn_Click">
         </Button>
     </Canvas>
 

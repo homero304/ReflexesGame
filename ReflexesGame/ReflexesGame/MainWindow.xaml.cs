@@ -80,14 +80,6 @@ namespace ReflexesGame
             InitializeComponent();
             MainCanvas.Focusable = true;
             MainCanvas.Focus();
-            timer = new DispatcherTimer();
-            timer.Interval = new TimeSpan(0, 0, 0, 0, 1000);
-            timer.Tick += new EventHandler(timer_Tick);
-            timer.IsEnabled = true;
-            timerPuntaje = new DispatcherTimer();
-            timerPuntaje.Interval = new TimeSpan(0, 0, 0, 0, 500);
-            timerPuntaje.Tick += new EventHandler(timerPuntaje_Tick);
-            timerPuntaje.IsEnabled = true;
         }
         private bool detect_collision(Point point1, Point point2)
         {
@@ -159,21 +151,6 @@ namespace ReflexesGame
                     this.miKinect = null;
                 }
             }
-            imagenes[0] = CP1;
-            imagenes[1] = CP2;
-            imagenes[2] = CP3;
-            imagenes[3] = CP4;
-            imagenes[4] = CP5;
-            imagenes[5] = CP6;
-            imagenes[6] = CP7;
-            imagenes[7] = CP8;
-            imagenes[8] = CP9;
-            imagenes[9] = CP10;
-            imagenes[10] = CP11;
-            imagenes[11] = CP12;
-            indiceSeleccionado = randomize.Next(0, 11);
-            puntoSeleccionado = puntos[indiceSeleccionado];
-            imagenes[indiceSeleccionado].Visibility = Visibility.Visible;
             
         }
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -257,7 +234,35 @@ namespace ReflexesGame
             return new Point(depthPoint.X, depthPoint.Y);
         }
 
-       // if(boton1X >=(double)mano.GetValue(Canvas.LeftProperty))
+        private void startBtn_Click(object sender, RoutedEventArgs e)
+        {
+            startBtn.Visibility = Visibility.Hidden;
+            imagenes[0] = CP1;
+            imagenes[1] = CP2;
+            imagenes[2] = CP3;
+            imagenes[3] = CP4;
+            imagenes[4] = CP5;
+            imagenes[5] = CP6;
+            imagenes[6] = CP7;
+            imagenes[7] = CP8;
+            imagenes[8] = CP9;
+            imagenes[9] = CP10;
+            imagenes[10] = CP11;
+            imagenes[11] = CP12;
+            indiceSeleccionado = randomize.Next(0, 11);
+            puntoSeleccionado = puntos[indiceSeleccionado];
+            imagenes[indiceSeleccionado].Visibility = Visibility.Visible;
+            timer = new DispatcherTimer();
+            timer.Interval = new TimeSpan(0, 0, 0, 0, 1000);
+            timer.Tick += new EventHandler(timer_Tick);
+            timer.IsEnabled = true;
+            timerPuntaje = new DispatcherTimer();
+            timerPuntaje.Interval = new TimeSpan(0, 0, 0, 0, 500);
+            timerPuntaje.Tick += new EventHandler(timerPuntaje_Tick);
+            timerPuntaje.IsEnabled = true;
+        }
+
+        // if(boton1X >=(double)mano.GetValue(Canvas.LeftProperty))
 
     }
 }
